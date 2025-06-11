@@ -1,0 +1,133 @@
+<%- include('layout/adminHeader') %>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+/>
+<link
+    rel="stylesheet"
+    href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+/>
+<link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+/>
+<link rel="icon" type="image/x-icon" href="/FlightXpressHeader.svg">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/addFlight" method="post">
+                        <div class="form-group">
+                            <label for="from">From:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="from_airport"
+                                name="startingLocation"
+                                placeholder="Enter starting location"
+                                list="airport"
+                                maxlength="30"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="to">To:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="to_airport"
+                                name="destination"
+                                placeholder="Enter destination"
+                                list="airport"
+                                maxlength="30"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="departure-date">Departure Date:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="departure-date"
+                                name="departure"
+                                placeholder="Select Departure Date"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="time-flight-start">Start Time:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="time-flight-start"
+                                placeholder="Select Start Time"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="time-flight-end">End Time:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="time-flight-end"
+                                placeholder="Select End Time"
+                                required
+                            />
+                        </div>
+                        <input
+                            type="hidden"
+                            name="timeFlight"
+                            id="time-flight"
+                        />
+                        <div class="form-group">
+                            <label for="price">Price:</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="price"
+                                name="price"
+                                placeholder="Enter price"
+                                required
+                            />
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Add Flight</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="/actions.js"></script>
+<script>
+    flatpickr("#departure-date", {
+        enableTime: false,
+        dateFormat: "Y-m-d"
+    });
+
+    flatpickr("#time-flight-start", {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+        time_24hr: true
+    });
+
+    flatpickr("#time-flight-end", {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+        time_24hr: true
+    });
+
+    $("form").on("submit", function() {
+        const startTime = $("#time-flight-start").val();
+        const endTime = $("#time-flight-end").val();
+        const timeFlight = `${startTime}-${endTime}`;
+        $("#time-flight").val(timeFlight);
+    });
+</script>
+<%- include('layout/footer') %>

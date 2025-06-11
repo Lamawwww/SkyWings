@@ -1,0 +1,26 @@
+#firstForm{
+    display: block;
+}
+#secondForm,#thirdForm,#summaryForm,#paymentForm,#submitButton,
+.flightId,.hide,.preBtn{
+    display: none;
+}
+#additional-info {
+    display: none;
+    margin-top: 20px;
+  }
+  .flight-card.selected {
+    background-color: #F5A614;
+    font-weight: bold;
+  }
+
+.row{
+  margin-top: 2rlh;
+  margin-left: 5em;
+}
+
+main{
+  margin: 0;
+  padding: 0;
+}
+  

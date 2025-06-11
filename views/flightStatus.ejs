@@ -1,0 +1,96 @@
+<%- include('layout/header') %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/formNavigator.css">
+<link rel="stylesheet" href="/G_flightlist.css">
+<link rel="stylesheet"href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+<link rel="icon" type="image/x-icon" href="/FlightXpressHeader.svg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<main>
+  <div class="progress-bar1">
+    <div class="step completed">
+        <div class="circle"><i class="fas fa-plane-departure"></i></div>
+        <div class="label">Flights</div>
+    </div>
+    <div class="step " >
+        <div class="circle"><i class="fas fa-user"></i></div>
+        <div class="label">Guest Details</div>
+    </div>
+    <div class="step" >
+        <div class="circle"><i class="fas fa-briefcase"></i></div>
+        <div class="label">Add-ons</div>
+    </div>
+    <div class="step" >
+        <div class="circle"><i class="fas fa-credit-card"></i></div>
+        <div class="label">Payment</div>
+    </div>
+    <div class="step">
+        <div class="circle"><i class="fas fa-check-circle"></i></div>
+        <div class="label">Confirmation</div>
+    </div>
+  </div> 
+  <h6>Select Your Departing Flight</h6>
+    <div class="row">
+      <% if (flights && flights.length > 0) { %>
+        <% flights.forEach((flight, index) => { %>
+          <div class="col-md-4">
+            <div class="card mb-4 text-decoration-none flight-card departure" style="color: inherit; cursor: pointer;" data-flight-id="<%= flight._id %>">
+              <div class="card-body">
+                <h2 class="card-title flightId"><%= flight._id %></h2>
+                <h2 class="card-title"><%= flight.routecode %></h2>
+                <p class="card-text"><strong>Departing:</strong> <%= flight.startingLocation %></p>
+                <p class="card-text"><strong>Destination:</strong> <%= flight.destination %></p>
+                <i class="fa-solid fa-plane airp" style="color: #F5A614;"></i>
+                <p class="card-text"><strong>Departure Date:</strong> <%= flight.departure.toDateString() %></p>
+                <p class="card-text"><strong>Estimated Time:</strong> <%= flight.timeFlight %></p>
+                <p class="card-text"><strong>Price:</strong> ₱<%= flight.price %></p>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <div class="col-12">
+          <p>No departing flights found for the given criteria.</p>
+        </div>
+      <% } %>
+    </div>
+
+    <% if (tripType === 'round-trip') { %>
+      <h2>Returning Flights</h2>
+      <div class="row">
+        <% if (returnFlights && returnFlights.length > 0) { %>
+          <% returnFlights.forEach((flight, index) => { %>
+            <div class="col-md-4">
+              <div class="card mb-4 text-decoration-none flight-card return" style="color: inherit; cursor: pointer;" data-flight-id="<%= flight._id %>">
+                <div class="card-body">
+                  <h2 class="card-title flightId" ><%= flight._id %></h2>
+                  <h2 class="card-title"><%= flight.routecode %></h2>
+                  <p class="card-text"><strong>From:</strong> <%= flight.startingLocation %></p>
+                  <p class="card-text"><strong>To:</strong> <%= flight.destination %></p>
+                  <p class="card-text"><strong>Departure:</strong> <%= flight.departure.toDateString() %></p>
+                  <p class="card-text"><strong>Time:</strong> <%= flight.timeFlight %></p>
+                  <p class="card-text"><strong>Price:</strong> ₱<%= flight.price %></p>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <div class="col-12">
+            <p>No returning flights found for the given criteria.</p>
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+    
+    <button id="continueBtn" class="btn btn-primary mt-3 butt">Continue</button>
+  </div>
+  
+</main>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  var tripType = "<%= tripType %>"; // Pass the tripType variable to JavaScript
+</script>
+<script type="module"src="/flightSelection.js"></script>
+<%- include('layout/footer') %>

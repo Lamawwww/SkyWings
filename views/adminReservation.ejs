@@ -1,0 +1,36 @@
+<%- include('layout/adminHeader') %>
+<div class="container mt-5">
+    <h2>Reservations</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Reservation ID</th>
+                <th>Passenger Name</th>
+                <th>Flight ID</th>
+                <th>Seat ID</th>
+                <th>Travel Class</th>
+                <th>Transaction ID</th>
+                <th>Flight Type</th>
+                <th>Flight Status</th>
+                <th>Reservation Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% reservations.forEach(reservation => { %>
+                <tr>
+                    <td><%= reservation._id %></td>
+                    <td><%= reservation.passengerID ? `${reservation.passengerID.firstname} ${reservation.passengerID.lastname}` : 'N/A' %></td>
+                    <td><%= reservation.flightID ? reservation.flightID._id : 'N/A' %></td>
+                    <td><%= reservation.seatID ? reservation.seatID.seatID : 'N/A' %></td>
+                    <td><%= reservation.seatID ? reservation.seatID.travel_class : 'N/A' %></td>
+                    <td><%= reservation.transactionID ? reservation.transactionID : 'N/A' %></td>
+                    <td><%= reservation.flightType ? reservation.flightType : 'N/A' %></td>
+                    <td><%= reservation.flightStatus ? reservation.flightStatus : 'N/A' %></td>
+                    <td><%= reservation.reservationDate ? reservation.reservationDate.toDateString() : 'N/A' %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+
+<%- include('layout/footer') %>
