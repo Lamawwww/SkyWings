@@ -1,12 +1,12 @@
-const User = require('../models/user');
-const Flight = require('../models/flight');
-const PersonalDetails = require('../models/PersonalDetail');
-const ContactDetails = require('../models/ContactDetail');
-const SeatPlan = require('../models/seatplan.js');
+const User = require('../models/users.js');
+const Flight = require('../models/flights.js');
+const PersonalDetails = require('../models/personalDetails.js');
+const ContactDetails = require('../models/contactDetails.js');
+const SeatPlan = require('../models/seatPlan.js');
 const PaymentDetails = require('../models/paymentDetails.js');
 const TransactionDetails = require('../models/transactionDetails.js');
 const ReservationDetails = require('../models/reservationDetails.js');
-const ServiceDetails =  require('../models/services_model.js');
+const ServiceDetails =  require('../models/servicesModel.js');
 const bcrypt = require('bcryptjs');
 
 //method for routecode
