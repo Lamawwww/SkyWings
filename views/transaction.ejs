@@ -1,5 +1,4 @@
-<%- include('layout/header') %>
-<%- include('layout/subheader') %>
+<%- include('layout/header', {name: typeof name !== 'undefined' ? name : 'Guest', logstatus: typeof logstatus !== 'undefined' ? logstatus : 'LOGIN'}) %>
 <link rel="stylesheet" href="/transaction.css">
 <div class="transacCard mt-5"> 
     

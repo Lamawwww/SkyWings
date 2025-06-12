@@ -4,6 +4,7 @@ const router = express.Router();
 const multer = require('multer');
 const controller = require('../controllers/routesController');
 
+
 router.get('/flight/:id', controller.flightgetID);
   
 router.post('/flight', controller.flightPost);
@@ -31,6 +32,72 @@ router.get("/aboutUs", (req, res) => {
     }
     
 });
+
+router.get("/flightStatus", async (req, res) => {
+    try {
+        if (!req.session) {
+            console.error('Session not initialized');
+            return res.render("flightStatus", { 
+                name: "Guest", 
+                logstatus: "LOGIN" 
+            });
+        }
+        
+        const name = req.session.email || "Guest";
+        const logstatus = name === "Guest" ? "LOGIN" : "LOGOUT";
+        
+        res.render("flightStatus", { 
+            name: name, 
+            logstatus: logstatus 
+        });
+    } catch (error) {
+        console.error('Error in flightStatus route:', error);
+        res.render("flightStatus", { 
+            name: "Guest", 
+            logstatus: "LOGIN" 
+        });
+    }
+});
+
+router.get("/guestDetails", (req, res) => {
+    try {
+        const userId = req.session?.userId;
+        const name = req.session?.email || "Guest";
+        const logstatus = name === "Guest" ? "LOGIN" : "LOGOUT";
+
+        res.render('guestDetails', { 
+            userId: userId,
+            name: name,
+            logstatus: logstatus
+        });
+    } catch (error) {
+        console.error('Error in guestDetails route:', error);
+        res.render('guestDetails', {
+            userId: null,
+            name: "Guest",
+            logstatus: "LOGIN"
+        });
+    }
+});
+
+router.get("/transaction", (req, res) => {
+    try {
+        const name = req.session?.email || "Guest";
+        const logstatus = name === "Guest" ? "LOGIN" : "LOGOUT";
+
+        res.render("transaction", {
+            name: name,
+            logstatus: logstatus
+        });
+    } catch (error) {
+        console.error('Error in transaction route:', error);
+        res.render("transaction", {
+            name: "Guest",
+            logstatus: "LOGIN"
+        });
+    }
+});
+
 router.get("/addFlight", (req, res) => {
     res.render("addFlight");
 });

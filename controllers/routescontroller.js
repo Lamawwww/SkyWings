@@ -196,7 +196,7 @@ const updateFlightPost = async (req,res)=>{
     }
 }
 
-const flightsearch = async (req, res)=>{
+const flightsearch = async (req, res) => {
     const { from, to, departureDate, returnDate, tripType } = req.query;
     
     try {
@@ -215,10 +215,16 @@ const flightsearch = async (req, res)=>{
             });
         }
 
+        // Add these lines to pass name and logstatus
+        const name = req.session?.email || "Guest";
+        const logstatus = name === "Guest" ? "LOGIN" : "LOGOUT";
+
         res.render('flightStatus', {
             flights: flights.length ? flights : null,
             returnFlights: returnFlights.length ? returnFlights : null,
-            tripType
+            tripType,
+            name: name,
+            logstatus: logstatus
         });
     } catch (err) {
         console.error(err);

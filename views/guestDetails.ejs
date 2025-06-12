@@ -1,3 +1,4 @@
+<%-include('layout/header') %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,16 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Details Form</title>
     <!-- Bootstrap CSS -->
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
 
     <link rel="stylesheet"href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="guestDetails.css">
     <link rel="stylesheet" href="/formNavigator.css" />
     <script async src="/flightpayment.js"></script>
-    <script async src="/formNavigator.js"></script>
+    <script async src="formNavigator.js"></script>
     <script async type="module" src="/getFlightInfo.js"></script>
     <link rel="icon" type="image/x-icon" href="/FlightXpressHeader.svg">
 
@@ -22,47 +19,6 @@
 
   </head>
   <body>
-    <header>
-      <a href="/" class="logo">AIRPLANE</a>
-      <div class="bx bx-menu" id="menu-icon"></div>
-      <ul class="navbar">
-        <li class="menubar">
-          <a href="#book">BOOK</a>
-          <ul class="submenu">
-            <li><a href="#option1">Book With Us</a></li>
-            <li><a href="/reservationlist">Flights</a></li>
-            <li><a href="#option3">Seat Sale</a></li>
-          </ul>
-        </li>
-        <li class="menubar">
-          <a href="#manage">MANAGE</a>
-          <ul class="submenu">
-            <li><a href="#option1">Check In</a></li>
-            <li><a href="#option2">Flight Status</a></li>
-            <li><a href="#option3">Manage Book</a></li>
-          </ul>
-        </li>
-        <li class="menubar">
-          <a href="#infotravel">INFO TRAVEL</a>
-          <ul class="submenu">
-            <li><a href="#option1">Payment Option</a></li>
-            <li><a href="#option2">Special Assistance</a></li>
-            <li><a href="#option3">Travel Documents</a></li>
-          </ul>
-        </li>
-        <li class="menubar">
-          <a href="#explore">EXPLORE</a>
-          <ul class="submenu">
-            <li><a href="#option1">Philippine Destinations</a></li>
-            <li><a href="#option2">International Destinations</a></li>
-            <li><a href="#option3">City Guides</a></li>
-          </ul>
-        </li>
-        <li class="menubar">
-          <a href="/aboutUs">ABOUT US</a>
-        </li>
-      </ul>
-    </header>
     <%- include('layout/subheader.ejs') %>
     <div class="container mt-5">
       <h1 class="mb-4 text-center">Details Form</h1>
@@ -589,17 +545,18 @@
               <div class="row">
                 <div class="col-md-4 seat available" data-seat="A1">A1</div>
                 <div class="col-md-4 seat available" data-seat="A2">A2</div>
-                <div class="col-md-4 seat available" data-seat="A3">A3</div>
               </div>
               <div class="row">
                 <div class="col-md-4 seat available" data-seat="B1">B1</div>
                 <div class="col-md-4 seat available" data-seat="B2">B2</div>
-                <div class="col-md-4 seat available" data-seat="B3">B3</div>
               </div>
               <div class="row">
                 <div class="col-md-4 seat available" data-seat="C1">C1</div>
                 <div class="col-md-4 seat available" data-seat="C2">C2</div>
-                <div class="col-md-4 seat available" data-seat="C3">C3</div>
+              </div>
+              <div class="row">
+                <div class="col-md-4 seat available" data-seat="D1">D1</div>
+                <div class="col-md-4 seat available" data-seat="D2">D2</div>
               </div>
             </div>
           </div>

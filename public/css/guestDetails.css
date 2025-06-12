@@ -1,254 +1,519 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kanit:ital,wght@0,600;0,700;0,800;1,400;1,600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-  * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-    text-decoration: none;
-    list-style: none;
-    font-family: 'Inter', sans-serif;
-  }
-  
-  body {
-    background: #e8f0f7;
-    font-family: 'Inter', sans-serif;
-    padding-top: 60px;
-  }
-  
-  header {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 30px 170px;
-    background: #1A2061;
-    height: 10%;
-  }
-  
-  .logo {
-    color: #e8f0f7;
-    font-weight: 600;
-    font-size: 2.4rem;
-    text-decoration: none !important; 
-    padding-left: 7%;
+/* Import the original flight booking styles as base */
+body {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  position: relative;
 }
 
-  
-  .navbar {
-    display: flex;
-    padding-top: 25px;
-    position: relative;
-  }
-  
-  .navbar a {
-    color: #e8f0f7;
-    font-size: 1.1rem;
-    padding: 5px 20px;
-    font-weight: 500;
-    text-decoration: none;
-  }
-  
-  .navbar a:hover {
-    color: orange;
-    transition: .4s;
-  }
-  
-  #menu-icon {
-    font-size: 2rem;
-    cursor: pointer;
-    display: none;
-    color: orange; /* Adjust color */
-  }
-  
-  .menubar {
-    position: relative;
-  }
-  
-  .submenu {
-    display: none; /* Hide submenu by default */
-    list-style-type: none;
-    position: absolute;
-    background-color: #ffffff; /* Background color of the submenu */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a shadow for a dropdown effect */
-    padding: 1rem;
-    width: 290px;
-    top: 100%; /* Position below the parent li */
-    left: 50%; /* Position at the center of the parent li */
-    transform: translateX(-50%); /* Center the submenu */
-    border-radius: 10px; /* Add border radius */
-  }
-  
-  .menubar:hover .submenu {
-    display: block; /* Show submenu when hovering over parent li */
-  }
-  
-  .submenu li {
-    color: #300440;
-    text-align: center;
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .submenu li a {
-    color: #300440;
-    text-decoration: none;
-  }
-  
-  .submenu li a:hover {
-    color: orange;
-  }
-  
-  
-  
-  @media (max-width: 1140px) {
-    header {
-      padding: 10px 16px;
-    }
-  
-    .navbar {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      position: absolute;
-      top: -400px;
-      left: 0;
-      right: 0;
-      background: #2b2640;
-      transition: .3s;
-      z-index: 999;
-      display: none; /* Hide by default */
-    }
-  
-    .navbar.active {
-      display: flex; /* Show when active */
-      top: 70px;
-    }
-  
-    .navbar a {
-      padding: 1.5rem;
-      display: block;
-    }
-  
-  
-    #menu-icon {
-      display: initial; /* Show the menu icon */
-    }
-  }
-  
-  @media (max-width: 575px) {
-    .logo {
-      font-size: 2rem; /* Adjust logo size for smaller screens */
-    }
-  
-    .navbar {
-      padding-top: 60px; /* Adjust padding to push content down */
-    }
-  }
-  
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+/* Background overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff05" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+  pointer-events: none;
+  z-index: -1;
 }
 
-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #1A2061;
-    color: #ffffff;
-    padding: 20px;
-    text-align: center;
-    z-index: 1000;
-}
-
-.card {
-    border-radius: 20px;
-    margin: auto; /* Center the card horizontally */
-    background-color: #ffffff;
-    box-shadow: 20px 20px 60px black, -20px -20px 60px #ffffff;
-    justify-content: space-between;
-    padding: 20px;
-    overflow-y: auto; /* Allows vertical scrolling if necessary */
-}
-
+/* Container Styling */
 .container {
-    padding: 20px;
-    flex-grow: 1; /* Ensures container takes up remaining space */
+  padding: 2rem 5%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-h1, h2, h3 {
-    color: #333333;
+/* Main Form Title */
+h1 {
+  color: white;
+  font-weight: 700;
+  margin: 2rem 0 3rem 0;
+  text-align: center;
+  font-size: 2.5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* Form Section Headers */
+h2.card-header {
+  background: linear-gradient(135deg, #2a5298, #1e3c72) !important;
+  color: white !important;
+  font-weight: 700;
+  font-size: 1.4rem;
+  text-align: center;
+  border: none !important;
+  border-radius: 20px 20px 0 0 !important;
+  padding: 1.5rem;
+  margin: 0;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Styling - Glass Morphism Design */
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(135deg, #2a5298, #1e3c72);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Card Body Styling */
+.card-body {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 0 0 20px 20px;
+}
+
+/* Form Group Styling */
 .form-group {
-    margin-bottom: 15px;
+  margin-bottom: 1.5rem;
 }
 
-label {
-    font-weight: bold;
-}
-.btn-primary{
-  background-color: white;
-  color: black;
-  border-radius: 10em;
-  font-size: 17px;
+.form-group label {
   font-weight: 600;
-  padding: 1em 2em;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  border: 1px solid black;
-  box-shadow: 0 0 0 0 black;
+  color: #2a5298;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* Form Control Styling */
+.form-control, 
+.form-control-plaintext {
+  border: 2px solid #e0e6ed;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.form-control:focus {
+  border-color: #2a5298;
+  box-shadow: 0 0 0 0.2rem rgba(42, 82, 152, 0.25);
+  background: white;
+}
+
+.form-control:hover {
+  border-color: #1e3c72;
+  background: white;
+}
+
+/* Select Styling */
+select.form-control {
+  background-image: linear-gradient(45deg, transparent 50%, #2a5298 50%), 
+                    linear-gradient(135deg, #2a5298 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(1em + 2px), 
+                       calc(100% - 15px) calc(1em + 2px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+/* Fieldset Styling */
+fieldset {
+  border: 2px solid rgba(42, 82, 152, 0.2);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  background: rgba(42, 82, 152, 0.05);
+}
+
+fieldset legend {
+  color: #2a5298;
+  font-weight: 700;
+  padding: 0 1rem;
+  font-size: 1.1rem;
+  border: none;
+  width: auto;
+}
+
+/* Button Styling */
+.btn-primary {
+  background: linear-gradient(135deg, #2a5298, #1e3c72);
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(42, 82, 152, 0.3);
+  margin: 0.5rem;
 }
 
 .btn-primary:hover {
-  transform: translateY(-4px) translateX(-2px);
-  box-shadow: 2px 5px 0 0 black;
-};
-
-.btn-primary:active {
-  transform: translateY(2px) translateX(1px);
-  box-shadow: 0 0 0 0 black;
-};
-
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-select {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(42, 82, 152, 0.5);
+  color: white;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
 }
 
-input[type="date"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 
-fieldset {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 20px;
+.btn-secondary {
+  background: linear-gradient(135deg, #6c757d, #495057);
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 15px rgba(108, 117, 125, 0.3);
 }
 
-legend {
-    font-weight: bold;
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(108, 117, 125, 0.4);
 }
 
+/* Submit Button Special Styling */
+#submitButton {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  display: block;
+  margin: 3rem auto;
+  min-width: 200px;
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+}
+
+#submitButton:hover {
+  background: linear-gradient(135deg, #20c997, #28a745);
+  box-shadow: 0 12px 35px rgba(40, 167, 69, 0.6);
+}
+
+/* Payment Method Cards */
+.card .card {
+  margin-bottom: 1rem;
+  border-radius: 15px;
+}
+
+.card .card-header.bg-warning {
+  background: linear-gradient(135deg, #F5A614, #ffc107) !important;
+  color: white !important;
+  font-weight: 600;
+  border-radius: 15px 15px 0 0 !important;
+}
+
+/* Form Check Styling */
+.form-check {
+  margin: 1rem 0;
+  padding: 0.5rem;
+}
+
+.form-check-input:checked {
+  background-color: #2a5298;
+  border-color: #2a5298;
+}
+
+.form-check-label {
+  margin-left: 0.5rem;
+  font-weight: 500;
+}
+
+/* Booking Summary Styling */
+.booking-summary {
+  background: linear-gradient(135deg, rgba(42, 82, 152, 0.1), rgba(30, 60, 114, 0.1));
+  border: 2px solid rgba(42, 82, 152, 0.3);
+}
+
+.booking-summary h4 {
+  color: #2a5298;
+  font-weight: 600;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.booking-summary .card-footer {
+  background: rgba(42, 82, 152, 0.1);
+  border-top: 2px solid rgba(42, 82, 152, 0.2);
+  border-radius: 0 0 20px 20px;
+}
+
+.booking-summary .card-footer h4 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1e3c72;
+}
+
+/* Modal Styling */
+.modal-content {
+  border-radius: 20px;
+  border: none;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  background: linear-gradient(135deg, #2a5298, #1e3c72);
+  color: white;
+  border-bottom: none;
+  padding: 1.5rem;
+}
+
+.modal-title {
+  font-weight: 700;
+}
+
+.modal-body {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.modal-footer {
+  background: rgba(248, 249, 250, 0.9);
+  border-top: 1px solid rgba(42, 82, 152, 0.1);
+  padding: 1.5rem;
+}
+
+/* Seat Plan Styling */
+.seat-plan .row {
+  margin: 0.5rem 0;
+}
+
+.seat {
+  background: #e9ecef;
+  border: 2px solid #dee2e6;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0.25rem;
+  font-weight: 600;
+}
+
+.seat.available:hover {
+  background: rgba(42, 82, 152, 0.1);
+  border-color: #2a5298;
+  transform: translateY(-2px);
+}
+
+.seat.selected {
+  background: linear-gradient(135deg, #2a5298, #1e3c72);
+  color: white;
+  border-color: #1e3c72;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(42, 82, 152, 0.4);
+}
+
+/* Navigation Button Container */
+.mt-5 {
+  text-align: center;
+  margin-top: 3rem !important;
+}
+
+/* Additional Info Section */
+.additional-info {
+  background: linear-gradient(135deg, rgba(245, 166, 20, 0.1), rgba(255, 193, 7, 0.1));
+  border: 2px solid rgba(245, 166, 20, 0.3);
+}
+
+.additional-info .card-header {
+  background: linear-gradient(135deg, #F5A614, #ffc107) !important;
+  padding: 1rem;
+}
+
+.additional-info #totalAmount {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #F5A614;
+  text-align: center;
+}
+
+/* Hide class for form navigation */
 .hide {
-    display: none; /* Hide the hidden form group */
+  display: none !important;
 }
 
+/* Animation for form sections */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.card:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.card:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem 3%;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin: 1.5rem 0 2rem 0;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  .btn-primary {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+    margin: 0.25rem;
+  }
+
+  #submitButton {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  fieldset {
+    padding: 1rem;
+    margin: 0.5rem 0;
+  }
+
+  .seat {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2.card-header {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .btn-primary {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .form-control {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .seat {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Form sections visibility control */
+#firstForm, #secondForm, #thirdForm, #summaryForm, #paymentForm {
+  transition: all 0.3s ease;
+}
+
+/* Payment method icons styling */
+.form-check-label img {
+  max-height: 40px;
+  width: auto;
+  transition: transform 0.2s ease;
+}
+
+.form-check-label img:hover {
+  transform: scale(1.05);
+}
+
+/* QR Code styling */
+.additional-info img[src="/QRcode.svg"] {
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.additional-info img[src="/QRcode.svg"]:hover {
+  transform: scale(1.05);
+}
+
+/* Icon in additional info header */
+#icon {
+  max-height: 50px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+/* Enhanced focus states for accessibility */
+.form-control:focus,
+.btn:focus,
+.seat:focus {
+  outline: 3px solid rgba(42, 82, 152, 0.3);
+  outline-offset: 2px;
+}
+
+/* Loading state for buttons */
+.btn-primary:disabled::after {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 10px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+}
+
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
