@@ -2,7 +2,7 @@ const express = require("express");
 // const session = require('express-session');
 const router = express.Router();
 const multer = require('multer');
-const controller = require('../controllers/routesController');
+const controller = require('../controllers/routescontroller');
 
 
 router.get('/flight/:id', controller.flightgetID);
