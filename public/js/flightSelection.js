@@ -24,7 +24,7 @@ function initFlightSelection() {
   if (tripType === "round-trip") {
     selectFlight('departure', '.flight-card.departure');
     selectFlight('return', '.flight-card.return');
-  } else {
+  } else{
     selectFlight('departure', '.flight-card.departure');
   }
   sessionStorage.setItem('tripType', tripType);
